@@ -2,9 +2,7 @@ package rtg.config.rtg;
 
 import java.io.File;
 
-import org.apache.logging.log4j.Level;
-
-import cpw.mods.fml.common.FMLLog;
+import rtg.util.Logger;
 import cpw.mods.fml.common.Loader;
 
 import net.minecraftforge.common.config.Configuration;
@@ -107,7 +105,7 @@ public class ConfigRTG
     public static int shadowStoneBlockByte = 9;
     
     public static String shadowDesertBlockId = "minecraft:stained_hardened_clay";
-    public static int shadowDesertBlockByte = 8;
+    public static int shadowDesertBlockByte = 0;
 
 	public static boolean enableUBCStoneShadowing = true;
 	public static boolean enableUBCDesertShadowing = true;
@@ -318,7 +316,7 @@ public class ConfigRTG
                 Configuration.NEW_LINE
             );
             
-            shadowDesertBlockByte = config.getInt("Desert shadow block meta value", "Terrain shadowing", shadowDesertBlockByte, 0, 15, "The meta value of the shadow block for desert cliffs. Defaults to " + shadowDesertBlockByte +  " (light gray)." + Configuration.NEW_LINE);
+            shadowDesertBlockByte = config.getInt("Desert shadow block meta value", "Terrain shadowing", shadowDesertBlockByte, 0, 15, "The meta value of the shadow block for desert cliffs. Defaults to " + shadowDesertBlockByte +  " (white)." + Configuration.NEW_LINE);
             
             enableUBCStoneShadowing = config.getBoolean(
                 "UBC Mode (Stone)",
@@ -412,7 +410,7 @@ public class ConfigRTG
 		}
 		catch (Exception e) 
 		{
-			FMLLog.log(Level.ERROR, e, "RTG has had a problem loading RTG configuration.");	
+		    Logger.error("RTG has had a problem loading RTG configuration.");	
 		}
 		finally 
 		{
